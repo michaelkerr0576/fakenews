@@ -1,7 +1,0 @@
-/client/node_modules
-/client/public
-/client/src
-/client/.gitignore
-/client/package.json
-/client/package-lock.json
-/client/README.md
