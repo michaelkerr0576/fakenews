@@ -55,12 +55,10 @@ const LatestNewsColumnArticle = (props) => {
                       return (
                         <span key={idx}>
                           {paragraph}
-                          <br />{" "}
                           <br
                             style={{
-                              height: "1px",
-                              visibility: "hidden",
-                              marginBottom: "-1px",
+                              margin: "2.5em 0",
+                              lineHeight: "2.5em",
                             }}
                           />
                         </span>
