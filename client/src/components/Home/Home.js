@@ -27,16 +27,27 @@ class Home extends Component {
         <Container fluid="lg">
           <Row>
             <Col xs={{ size: 12, order: 2 }} md={{ size: 8, order: 1 }}>
-              <Headline1 />
+              <Headline1 articles={articles} />
             </Col>
             <Col xs={{ size: 12, order: 1 }} md={{ size: 4, order: 2 }}>
               <MostRead />
             </Col>
+            {/* <Col xs={{ size: 12, order: 3 }}>
+              <Headline2n3 articles={articles} />
+            </Col> */}
             <Col xs={{ size: 12, order: 3 }}>
-              <Headline2n3 />
+              <div className="c-crosshatch border mt-5 mb-4 mx-5 pb-1"></div>
             </Col>
           </Row>
         </Container>
+        {/* react-strap cant handle custom sass xxxl breakpoints, using standard bootstrap syntax */}
+        <div class="container-fluid mb-5">
+          <div class="row">
+            <div class="col-xs-12  col-xxxl-10 offset-xxxl-1">
+              <Headline2n3 articles={articles} />
+            </div>
+          </div>
+        </div>
         <div className="c-crosshatch border mt-4 pb-1"></div>
         <hr className="c-hr mt-0 mb-0" />
         {/* <div className="c-crosshatch border pb-1"></div> */}
@@ -80,7 +91,7 @@ const mapSateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  getArticles
+  getArticles,
 };
 
 export default connect(mapSateToProps, mapDispatchToProps)(Home);

@@ -153,6 +153,7 @@ class AdminModalForm extends Component {
   };
 
   render() {
+    const { errors } = this.state;
     const isType = this.state.type;
     let submitBtnType;
     if (isType === "addArticle") {
@@ -170,7 +171,6 @@ class AdminModalForm extends Component {
     } else {
       submitBtnType = <span>SUBMIT</span>;
     }
-    const { errors } = this.state;
 
     return (
       <div>

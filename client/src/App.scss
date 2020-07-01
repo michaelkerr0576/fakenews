@@ -1,3 +1,28 @@
+// File: theme.scss
+// Override default BT variables:
+$grid-breakpoints: (
+//   xs: 0,
+//   sm: 575.98px,
+//   md: 767.98px,
+//   lg: 991.98px,
+//   xl: 1199.98px,
+  xxl: 1440px,
+  xxxl: 2160px,
+);
+
+$container-max-widths: (
+//   sm: 575.98px,
+//   md: 767.98px,
+//   lg: 991.98px,
+//   xl: 1199.98px,
+  xxl: 1440px,
+  xxxl: 2160px,
+);
+
+// Import BT sources
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// Your CSS (SASS) rules here...
 /* BASE */
 * {
   box-sizing: border-box;
@@ -185,6 +210,13 @@ p {
   grid-column-gap: 1.25rem;
   column-gap: 1.25rem;
 }
+.c-headlineColumn2n3.card-columns {
+  column-count: 2;
+  -webkit-column-gap: 1.25rem;
+  -moz-column-gap: 1.25rem;
+  grid-column-gap: 1.25rem;
+  column-gap: 1.25rem;
+}
 .c-latestNewsColumn.card-columns {
   column-count: 2;
   -webkit-column-gap: 1.25rem;
@@ -278,6 +310,13 @@ p {
     grid-column-gap: 1.25rem;
     column-gap: 1.25rem;
   }
+  .c-headlineColumn2n3.card-columns {
+    column-count: 3;
+    -webkit-column-gap: 1rem;
+    -moz-column-gap: 1rem;
+    grid-column-gap: 1rem;
+    column-gap: 1rem;
+  }
   .c-maxXlFeature {
     display: block;
   }
@@ -319,6 +358,13 @@ p {
     column-gap: 1rem;
   }
   .c-headlineColumn.card-columns {
+    column-count: 1;
+    -webkit-column-gap: 1rem;
+    -moz-column-gap: 1rem;
+    grid-column-gap: 1rem;
+    column-gap: 1rem;
+  }
+  .c-headlineColumn2n3.card-columns {
     column-count: 1;
     -webkit-column-gap: 1rem;
     -moz-column-gap: 1rem;
