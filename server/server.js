@@ -4,7 +4,7 @@ const app = require("./app");
 
 // Handle production build
 if (process.env.NODE_ENV === "production") {
-  console.log("HERE");
+  console.log("production");
   // Static folder
   app.use(express.static(__dirname + "//../client/build"));
   // Handle single page app

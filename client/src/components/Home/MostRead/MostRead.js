@@ -71,7 +71,18 @@ const FrontPageMostRead = (props) => {
                   </th>
                   <td className="pr-1 align-middle">
                     <h5 className="c-textUnderline c-pointer">
-                      Local Nudist Refuses To Wear Face Mask
+                      ‘Orgies, Tripping Joggers, Human Sacrifices’: Phase One Of
+                      Lockdown Easing Explored
+                    </h5>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row" className="align-middle">
+                    <h5 className="c-h5Num px-1">7.</h5>
+                  </th>
+                  <td className="pr-1 align-middle">
+                    <h5 className="c-textUnderline c-pointer">
+                      Local Man An Expert In The German League All Of A Sudden
                     </h5>
                   </td>
                 </tr>

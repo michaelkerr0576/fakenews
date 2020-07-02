@@ -243,13 +243,13 @@ const FooterAdminButton = (props) => {
                 case "updateArticle":
                   return (
                     <span>
-                      <i className={"far fa-edit fa-lg p-0 px-1"}></i>
+                      <i className="far fa-edit fa-lg p-0 px-1"></i>
                     </span>
                   );
                 case "deleteArticle":
                   return (
                     <span>
-                      <i className={"far fa-trash-alt fa-lg p-0 px-1"}></i>
+                      <i className="far fa-trash-alt fa-lg p-0 px-1"></i>
                     </span>
                   );
                 default:
