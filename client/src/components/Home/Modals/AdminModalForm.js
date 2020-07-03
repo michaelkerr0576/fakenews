@@ -87,7 +87,7 @@ class AdminModalForm extends Component {
     event.preventDefault();
     const { name, value } = event.target;
     let errors = this.state.errors;
-
+    // field validation checks
     switch (name) {
       case "title":
         errors.title = value.length < 1 ? "Article title is required!" : "";

@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import { Row, Col, Button, CardFooter, Tooltip } from "reactstrap";
 import { connect } from "react-redux";
-import { deleteArticle } from "../../../actions/articleActions";
+import { updateArticle, deleteArticle } from "../../../actions/articleActions";
 import PropTypes from "prop-types";
 import uuid from "react-uuid";
 
@@ -18,6 +18,7 @@ class AdminLatestNewsColumnFooter extends Component {
   };
 
   onSetHeadline = (name) => {
+    console.log("HEY PRESTO 1");
     switch (name) {
       case "isHeadline1":
         return this.setState({
@@ -40,6 +41,24 @@ class AdminLatestNewsColumnFooter extends Component {
       default:
         return false;
     }
+  };
+
+  onSubmitHeadline = () => {
+    console.log("HEY PRESTO 2");
+    const newArticle = {
+      id: this.props.article.id,
+      title: this.props.article.title,
+      subtitle: this.props.article.subtitle,
+      body: this.props.article.body,
+      author: this.props.article.author,
+      section: this.props.article.section,
+      datetime: this.props.article.datetime,
+      isHeadline1: this.state.isHeadline1,
+      isHeadline2: this.state.isHeadline2,
+      isHeadline3: this.state.isHeadline3,
+    };
+    console.log(newArticle);
+    this.props.updateArticle(this.props.articleIndex, newArticle);
   };
 
   onUpdateArticle = () => {
@@ -112,6 +131,7 @@ class AdminLatestNewsColumnFooter extends Component {
                       button={button}
                       state={this.state}
                       onSetHeadline={this.onSetHeadline}
+                      onSubmitHeadline={this.onSubmitHeadline}
                     />
                   );
                 })}
@@ -164,6 +184,7 @@ const FooterAdminButton = (props) => {
     button,
     state,
     onSetHeadline,
+    onSubmitHeadline,
     onUpdateArticle,
     onDeleteArticle,
   } = props;
@@ -185,7 +206,13 @@ const FooterAdminButton = (props) => {
             case "isHeadline1":
             case "isHeadline2":
             case "isHeadline3":
-              return onSetHeadline(button.name);
+              // async await to execute efectively execute functions one after the other
+              const setHeadline = async () => {
+                let data = await onSetHeadline(button.name);
+                data = await onSubmitHeadline();
+                return data;
+              };
+              return setHeadline();
             case "updateArticle":
               return onUpdateArticle();
             case "deleteArticle":
@@ -273,10 +300,12 @@ const FooterAdminButton = (props) => {
 };
 
 AdminLatestNewsColumnFooter.propTypes = {
+  updateArticle: PropTypes.func.isRequired,
   deleteArticle: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = {
+  updateArticle,
   deleteArticle,
 };
 
