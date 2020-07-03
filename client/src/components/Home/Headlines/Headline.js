@@ -17,7 +17,15 @@ class Headline extends Component {
     const { charLimit } = this.state;
 
     //find Headline
-    let headline;
+    //default headline if none is set
+    let headline = {
+      title: ">>> Set Headline in Latest News <<<",
+      subtitle: "...",
+      body: "",
+      author: "Blank",
+      section: "Blank",
+      datetime: "Blank"
+    };
     for (let i = 0; i < articles.length; i++) {
       let article = articles[i];
       if (
