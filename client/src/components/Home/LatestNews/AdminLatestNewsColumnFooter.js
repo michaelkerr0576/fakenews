@@ -1,7 +1,11 @@
 import React, { Component, useState } from "react";
 import { Row, Col, Button, CardFooter, Tooltip } from "reactstrap";
 import { connect } from "react-redux";
-import { updateArticle, deleteArticle } from "../../../actions/articleActions";
+import {
+  updateArticle,
+  deleteArticle,
+  resetHeadlines,
+} from "../../../actions/articleActions";
 import PropTypes from "prop-types";
 import uuid from "react-uuid";
 
@@ -15,6 +19,7 @@ class AdminLatestNewsColumnFooter extends Component {
     isHeadline1: this.props.article.isHeadline1,
     isHeadline2: this.props.article.isHeadline2,
     isHeadline3: this.props.article.isHeadline3,
+    headlineName: "",
   };
 
   onSetHeadline = (name) => {
@@ -24,18 +29,21 @@ class AdminLatestNewsColumnFooter extends Component {
           isHeadline1: !this.state.isHeadline1,
           isHeadline2: false,
           isHeadline3: false,
+          headlineName: "isHeadline1",
         });
       case "isHeadline2":
         return this.setState({
           isHeadline1: false,
           isHeadline2: !this.state.isHeadline2,
           isHeadline3: false,
+          headlineName: "isHeadline2",
         });
       case "isHeadline3":
         return this.setState({
           isHeadline1: false,
           isHeadline2: false,
           isHeadline3: !this.state.isHeadline3,
+          headlineName: "isHeadline3",
         });
       default:
         return false;
@@ -57,6 +65,10 @@ class AdminLatestNewsColumnFooter extends Component {
     };
     console.log(newArticle);
     this.props.updateArticle(this.props.articleIndex, newArticle);
+  };
+
+  onResetHeadline = () => {
+    this.props.resetHeadlines(this.state.headlineName);
   };
 
   onUpdateArticle = () => {
@@ -127,8 +139,9 @@ class AdminLatestNewsColumnFooter extends Component {
                       key={i}
                       id={i.id}
                       button={button}
-                      state={this.state}
+                      article={article}
                       onSetHeadline={this.onSetHeadline}
+                      onResetHeadline={this.onResetHeadline}
                       onSubmitHeadline={this.onSubmitHeadline}
                     />
                   );
@@ -162,7 +175,8 @@ class AdminLatestNewsColumnFooter extends Component {
                       key={i}
                       id={i}
                       button={button}
-                      state={this.state}
+                      article={article}
+                      //state={this.state}
                       onUpdateArticle={this.onUpdateArticle}
                       onDeleteArticle={this.onDeleteArticle}
                     />
@@ -180,8 +194,9 @@ class AdminLatestNewsColumnFooter extends Component {
 const FooterAdminButton = (props) => {
   const {
     button,
-    state,
+    article,
     onSetHeadline,
+    onResetHeadline,
     onSubmitHeadline,
     onUpdateArticle,
     onDeleteArticle,
@@ -207,6 +222,7 @@ const FooterAdminButton = (props) => {
               // async await to execute efectively execute functions one after the other
               const setHeadline = async () => {
                 let data = await onSetHeadline(button.name);
+                data = await onResetHeadline();
                 data = await onSubmitHeadline();
                 return data;
               };
@@ -229,10 +245,10 @@ const FooterAdminButton = (props) => {
                 case "isHeadline1":
                   return (
                     <span>
-                      {state.isHeadline1 === true && (
+                      {article.isHeadline1 === true && (
                         <i className="fas fa-star fa-lg p-0 pl-sm-1"></i>
                       )}
-                      {state.isHeadline1 === false && (
+                      {article.isHeadline1 === false && (
                         <i className="far fa-star fa-lg p-0 pl-sm-1"></i>
                       )}
                     </span>
@@ -240,10 +256,10 @@ const FooterAdminButton = (props) => {
                 case "isHeadline2":
                   return (
                     <span>
-                      {state.isHeadline2 === true && (
+                      {article.isHeadline2 === true && (
                         <i className="fas fa-star fa-lg p-0 pl-sm-1"></i>
                       )}
-                      {state.isHeadline2 === false && (
+                      {article.isHeadline2 === false && (
                         <i className="far fa-star fa-lg p-0 pl-sm-1"></i>
                       )}
                     </span>
@@ -251,10 +267,10 @@ const FooterAdminButton = (props) => {
                 case "isHeadline3":
                   return (
                     <span>
-                      {state.isHeadline3 === true && (
+                      {article.isHeadline3 === true && (
                         <i className="fas fa-star fa-lg p-0 pl-sm-1"></i>
                       )}
-                      {state.isHeadline3 === false && (
+                      {article.isHeadline3 === false && (
                         <i className="far fa-star fa-lg p-0 pl-sm-1"></i>
                       )}
                     </span>
@@ -300,11 +316,13 @@ const FooterAdminButton = (props) => {
 AdminLatestNewsColumnFooter.propTypes = {
   updateArticle: PropTypes.func.isRequired,
   deleteArticle: PropTypes.func.isRequired,
+  resetHeadlines: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = {
   updateArticle,
   deleteArticle,
+  resetHeadlines,
 };
 
 export default connect(null, mapDispatchToProps)(AdminLatestNewsColumnFooter);

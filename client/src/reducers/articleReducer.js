@@ -3,6 +3,7 @@ import {
   ADD_ARTICLE,
   UPDATE_ARTICLE,
   DELETE_ARTICLE,
+  RESET_HEADLINES,
   ARTICLES_LOADING,
 } from "../actions/actionTypes";
 
@@ -93,6 +94,39 @@ export default function (state = initialState, action) {
           (article) => article.id !== action.payload
         ),
       };
+    case RESET_HEADLINES:
+      // checking which headline reset to false
+      switch (action.payload) {
+        case "isHeadline1":
+          return {
+            ...state,
+            articles: state.articles.map((article, i) =>
+              article.isHeadline1 === true
+                ? { ...article, isHeadline1: false }
+                : article
+            ),
+          };
+        case "isHeadline2":
+          return {
+            ...state,
+            articles: state.articles.map((article, i) =>
+              article.isHeadline2 === true
+                ? { ...article, isHeadline2: false }
+                : article
+            ),
+          };
+        case "isHeadline3":
+          return {
+            ...state,
+            articles: state.articles.map((article, i) =>
+              article.isHeadline3 === true
+                ? { ...article, isHeadline3: false }
+                : article
+            ),
+          };
+        default:
+          return state;
+      }
     case ARTICLES_LOADING:
       return {
         ...state,

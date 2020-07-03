@@ -11,7 +11,11 @@ import {
   Tooltip,
 } from "reactstrap";
 import { connect } from "react-redux";
-import { addArticle, updateArticle } from "../../../actions/articleActions";
+import {
+  addArticle,
+  updateArticle,
+  resetHeadlines,
+} from "../../../actions/articleActions";
 import PropTypes from "prop-types";
 import uuid from "react-uuid";
 
@@ -137,8 +141,12 @@ class AdminModalForm extends Component {
       const isType = this.state.type;
       const headlineName = this.state.headlineName;
       if (isType === "addArticle") {
+        // reset all headline 1/2/3 if set in form. Then adding new article
+        this.props.resetHeadlines(headlineName);
         this.props.addArticle(newArticle);
       } else if (isType === "updateArticle") {
+        // reset all headline 1/2/3 if set in form. Then adding updated article
+        this.props.resetHeadlines(headlineName);
         this.props.updateArticle(this.state.articleIndex, newArticle);
         // Set Footer Headlines
         this.state.onSetHeadlineParent(headlineName);
@@ -394,11 +402,13 @@ const MakeHeadlineButton = (props) => {
 AdminModalForm.propTypes = {
   addArticle: PropTypes.func.isRequired,
   updateArticle: PropTypes.func.isRequired,
+  resetHeadlines: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = {
   addArticle,
   updateArticle,
+  resetHeadlines,
 };
 
 export default connect(null, mapDispatchToProps)(AdminModalForm);

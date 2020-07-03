@@ -4,6 +4,7 @@ import {
   UPDATE_ARTICLE,
   DELETE_ARTICLE,
   ARTICLES_LOADING,
+  RESET_HEADLINES,
 } from "./actionTypes";
 
 export const getArticles = () => {
@@ -30,6 +31,13 @@ export const deleteArticle = (id) => {
   return {
     type: DELETE_ARTICLE,
     payload: id,
+  };
+};
+
+export const resetHeadlines = (type) => {
+  return {
+    type: RESET_HEADLINES,
+    payload: type,
   };
 };
 
