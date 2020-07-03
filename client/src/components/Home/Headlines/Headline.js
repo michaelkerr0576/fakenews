@@ -16,7 +16,6 @@ class Headline extends Component {
     const { articles } = this.props;
     const { charLimit } = this.state;
 
-    //find Headline
     //default headline if none is set
     let headline = {
       title: ">>> Set Headline in Latest News <<<",
@@ -26,6 +25,7 @@ class Headline extends Component {
       section: "Blank",
       datetime: "Blank"
     };
+    //find Headline
     for (let i = 0; i < articles.length; i++) {
       let article = articles[i];
       if (
