@@ -18,7 +18,6 @@ class AdminLatestNewsColumnFooter extends Component {
   };
 
   onSetHeadline = (name) => {
-    console.log("HEY PRESTO 1");
     switch (name) {
       case "isHeadline1":
         return this.setState({
@@ -44,7 +43,6 @@ class AdminLatestNewsColumnFooter extends Component {
   };
 
   onSubmitHeadline = () => {
-    console.log("HEY PRESTO 2");
     const newArticle = {
       id: this.props.article.id,
       title: this.props.article.title,
