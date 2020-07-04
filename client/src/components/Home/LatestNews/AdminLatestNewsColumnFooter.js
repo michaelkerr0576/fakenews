@@ -15,7 +15,6 @@ import AdminUpdateArticleModal from "../Modals/AdminUpdateArticleModal";
 class AdminLatestNewsColumnFooter extends Component {
   state = {
     modal: false,
-    id: this.props.article.id,
     isHeadline1: this.props.article.isHeadline1,
     isHeadline2: this.props.article.isHeadline2,
     isHeadline3: this.props.article.isHeadline3,
@@ -78,7 +77,7 @@ class AdminLatestNewsColumnFooter extends Component {
   };
 
   onDeleteArticle = () => {
-    this.props.deleteArticle(this.state.id);
+    this.props.deleteArticle(this.props.article.id);
   };
 
   render() {
