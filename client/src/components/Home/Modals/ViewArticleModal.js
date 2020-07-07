@@ -17,6 +17,7 @@ class ViewArticleModal extends Component {
 
   render() {
     const { headline } = this.props;
+    
     return (
       <div className="text-center">
         <Button className="c-button c-select" onClick={this.onToggle}>

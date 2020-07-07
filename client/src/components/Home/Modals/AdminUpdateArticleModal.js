@@ -14,14 +14,13 @@ class AdminUpdateArticleModal extends Component {
       author: "",
       section: "",
     },
-    onUpdateArticle: this.props.onUpdateArticle,
   };
 
   onToggle = () => {
     this.setState({
       modal: !this.state.modal,
     });
-    this.state.onUpdateArticle();
+    this.props.onUpdateArticle();
   };
 
   render() {

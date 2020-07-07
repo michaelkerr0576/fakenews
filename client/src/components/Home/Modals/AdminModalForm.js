@@ -45,15 +45,13 @@ class AdminModalForm extends Component {
     isHeadline3: this.props.article.isHeadline3,
     headlineName: "",
     errors: this.props.errors,
-    onToggleParent: this.props.onToggleParent,
-    onSetHeadlineParent: this.props.onSetHeadlineParent,
   };
 
   onToggle = () => {
     this.setState({
       modal: !this.state.modal,
     });
-    this.state.onToggleParent();
+    this.props.onToggleParent();
   };
 
   onSetHeadline = (name) => {
@@ -85,6 +83,22 @@ class AdminModalForm extends Component {
       default:
         return false;
     }
+  };
+
+  onSetHeadlineParent = (headlineName) => {
+    this.props.onSetHeadlineParent(headlineName);
+  };
+
+  onResetHeadlines = (headlineName) => {
+    this.props.resetHeadlines(headlineName);
+  };
+
+  onAddArticle = (newArticle) => {
+    this.props.addArticle(newArticle);
+  };
+
+  onUpdateArticle = (i, updatedArticle) => {
+    this.props.updateArticle(i, updatedArticle);
   };
 
   onChange = (event) => {
@@ -142,14 +156,14 @@ class AdminModalForm extends Component {
       const headlineName = this.state.headlineName;
       if (isType === "addArticle") {
         // reset all headline 1/2/3 if set in form. Then adding new article
-        this.props.resetHeadlines(headlineName);
-        this.props.addArticle(newArticle);
+        this.onResetHeadlines(headlineName);
+        this.onAddArticle(newArticle);
       } else if (isType === "updateArticle") {
         // reset all headline 1/2/3 if set in form. Then adding updated article
-        this.props.resetHeadlines(headlineName);
-        this.props.updateArticle(this.state.articleIndex, newArticle);
+        this.onResetHeadlines(headlineName);
+        this.onUpdateArticle(this.state.articleIndex, newArticle);
         // Set Footer Headlines
-        this.state.onSetHeadlineParent(headlineName);
+        this.onSetHeadlineParent(headlineName);
       } else {
         return null;
       }

@@ -23,7 +23,7 @@ class Headline extends Component {
       body: "",
       author: "Blank",
       section: "Blank",
-      datetime: "Blank"
+      datetime: "Blank",
     };
     //find Headline
     for (let i = 0; i < articles.length; i++) {
@@ -86,11 +86,15 @@ class Headline extends Component {
         <h3 className="mb-3">{headline.subtitle}</h3>
         <CardColumns className={this.state.colStyle}>
           {bodyContent}
-          <HeadlineDetails
-            author={headline.author}
-            section={headline.section}
-            datetime={headline.datetime}
-          />
+          {headline.subtitle !== "..." ? (
+            <HeadlineDetails
+              author={headline.author}
+              section={headline.section}
+              datetime={headline.datetime}
+            />
+          ) : (
+            false
+          )}
         </CardColumns>
       </div>
     );
