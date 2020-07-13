@@ -25,7 +25,7 @@ exports.articles_get_all = async (req, res, next) => {
             request: {
               type: "GET",
               description: "GET article",
-              url: process.env.URL + "/articles/" + article.id,
+              url: process.env.REACT_APP_URL + "/articles/" + article.id,
             },
           };
         }),
@@ -69,7 +69,7 @@ exports.articles_post_article = async (req, res, next) => {
           request: {
             type: "GET",
             description: "GET Posted Article",
-            url: process.env.URL + "/article/" + article.id,
+            url: process.env.REACT_APP_URL + "/article/" + article.id,
           },
         },
       });
@@ -103,7 +103,7 @@ exports.articles_get_article = async (req, res, next) => {
           request: {
             type: "GET",
             description: "GET all articles",
-            url: process.env.URL + "/articles",
+            url: process.env.REACT_APP_URL + "/articles",
           },
         });
       }
@@ -130,7 +130,7 @@ exports.articles_update_article = async (req, res, next) => {
         request: {
           type: "GET",
           description: "GET updated article",
-          url: process.env.URL + "/articles/" + id,
+          url: process.env.REACT_APP_URL + "/articles/" + id,
         },
       });
     })
@@ -151,7 +151,7 @@ exports.articles_delete_article = async (req, res, next) => {
           request: {
             type: "GET",
             description: "GET all articles",
-            url: process.env.URL + "/articles",
+            url: process.env.REACT_APP_URL + "/articles",
           },
         })
       )

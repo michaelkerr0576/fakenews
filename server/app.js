@@ -21,10 +21,25 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => console.log("MongoDB Connected..."))
-  .catch((err) => console.log(err));
+  .catch((err) => console.log("MongoDB NOT Connected... " + err));
 
 // Middleware
 app.use(bodyParser.json());
+
+// CORS -- course correction for client
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*"); // gives access to any client
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization" // append to incoming request
+  );
+  if (req.method === "OPTIONS") {
+    res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET"); // limit API access
+    return res.status(200).json({});
+  }
+  next();
+});
+
 
 // Use routes to handle API requests
 app.use("/articles", articlesRoutes);

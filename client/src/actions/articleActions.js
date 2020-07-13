@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   GET_ARTICLES,
   ADD_ARTICLE,
@@ -7,10 +8,14 @@ import {
   RESET_HEADLINES,
 } from "./actionTypes";
 
-export const getArticles = () => {
-  return {
-    type: GET_ARTICLES,
-  };
+export const getArticles = () => (dispatch) => {
+  dispatch(setArticlesLoading());
+  axios.get(process.env.REACT_APP_URL + "/articles").then((res) =>
+    dispatch({
+      type: GET_ARTICLES,
+      payload: res.data.Articles,
+    })
+  );
 };
 
 export const addArticle = (article) => {
