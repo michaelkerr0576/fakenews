@@ -13,16 +13,18 @@ export const getArticles = () => (dispatch) => {
   axios.get(process.env.REACT_APP_URL + "/articles").then((res) =>
     dispatch({
       type: GET_ARTICLES,
-      payload: res.data.Articles,
+      payload: res.data,
     })
   );
 };
 
-export const addArticle = (article) => {
-  return {
-    type: ADD_ARTICLE,
-    payload: article,
-  };
+export const addArticle = (article) => (dispatch) => {
+  axios.post(process.env.REACT_APP_URL + "/articles", article).then((res) =>
+    dispatch({
+      type: ADD_ARTICLE,
+      payload: res.data,
+    })
+  );
 };
 
 export const updateArticle = (index, article) => {
@@ -32,11 +34,13 @@ export const updateArticle = (index, article) => {
   };
 };
 
-export const deleteArticle = (id) => {
-  return {
-    type: DELETE_ARTICLE,
-    payload: id,
-  };
+export const deleteArticle = (id) => (dispatch) => {
+  axios.delete(process.env.REACT_APP_URL + "/articles/" + id).then((res) =>
+    dispatch({
+      type: DELETE_ARTICLE,
+      payload: id,
+    })
+  );
 };
 
 export const resetHeadlines = (type) => {

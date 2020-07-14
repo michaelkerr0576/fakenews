@@ -51,7 +51,7 @@ class AdminLatestNewsColumnFooter extends Component {
 
   onSubmitHeadline = () => {
     const newArticle = {
-      id: this.props.article.id,
+      _id: this.props.article._id,
       title: this.props.article.title,
       subtitle: this.props.article.subtitle,
       body: this.props.article.body,
@@ -77,7 +77,7 @@ class AdminLatestNewsColumnFooter extends Component {
   };
 
   onDeleteArticle = () => {
-    this.props.deleteArticle(this.props.article.id);
+    this.props.deleteArticle(this.props.article._id);
   };
 
   render() {

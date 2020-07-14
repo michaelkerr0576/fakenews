@@ -22,13 +22,13 @@ const LatestNewsColumnArticle = (props) => {
     <div>
       <TransitionGroup className="c-latestNewsColumnArticle">
         {articles.map((article, i) => (
-          <CSSTransition key={article.id} timeout={500} classNames="fade">
+          <CSSTransition key={article._id} timeout={500} classNames="fade">
             <Card>
               <CardHeader>
                 <Row>
                   <Col xs="auto" className="text-left mr-auto">
                     <small className="c-borderUnderline c-pointer">
-                      {article.author}
+                      {article.author} 
                     </small>
                     <small className="text-muted mx-1">|</small>
                     <small className="c-borderUnderline c-pointer">
@@ -44,7 +44,7 @@ const LatestNewsColumnArticle = (props) => {
               </CardHeader>
               <div className="c-crosshatch pb-1"></div>
               <CardBody>
-                <CardTitle className="my-1">{article.title}</CardTitle>
+        <CardTitle className="my-1">{article.title}</CardTitle>
                 <hr className="c-hr2 mx-n2 my-2" />
                 <CardColumns className="c-latestNewsColumn mt-3">
                   <CardSubtitle className="pt-1">

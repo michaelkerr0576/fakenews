@@ -17,7 +17,6 @@ import {
   resetHeadlines,
 } from "../../../actions/articleActions";
 import PropTypes from "prop-types";
-import uuid from "react-uuid";
 
 const validateForm = (errors) => {
   let valid = true;
@@ -33,7 +32,7 @@ class AdminModalForm extends Component {
     type: this.props.type,
     modal: this.props.modal,
     articleIndex: this.props.articleIndex,
-    id: this.props.article.id,
+    _id: this.props.article._id,
     title: this.props.article.title,
     subtitle: this.props.article.subtitle,
     body: this.props.article.body,
@@ -133,7 +132,7 @@ class AdminModalForm extends Component {
     event.preventDefault();
     const newArticle = {
       // if in add article modal create new id, else take existing id for update article modal
-      id: this.state.type === "addArticle" ? uuid() : this.state.id,
+      _id: this.state.type === "addArticle" ? null : this.state._id,
       title: this.state.title,
       subtitle: this.state.subtitle,
       body: this.state.body,
@@ -150,7 +149,7 @@ class AdminModalForm extends Component {
     };
     if (validateForm(this.state.errors)) {
       console.info("Valid " + this.state.type + " Form");
-      console.log(newArticle);
+      //console.log(newArticle);
       // Add or update article via actions
       const isType = this.state.type;
       const headlineName = this.state.headlineName;
