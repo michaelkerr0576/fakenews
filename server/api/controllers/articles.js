@@ -50,36 +50,52 @@ exports.articles_post_article = async (req, res, next) => {
     isHeadline2: req.body.isHeadline2,
     isHeadline3: req.body.isHeadline3,
   });
-  await newArticle
-    .save()
-    .then((article) => {
-      console.log(article);
-      res.status(201).json({
-        message: "New Article",
-        newArticle: {
-          _id: article._id,
-          title: article.title,
-          subtitle: article.subtitle,
-          body: article.body,
-          author: article.author,
-          section: article.section,
-          datetime: article.datetime,
-          isHeadline1: article.isHeadline1,
-          isHeadline2: article.isHeadline2,
-          isHeadline3: article.isHeadline3,
-          request: {
-            type: "GET",
-            description: "GET Posted Article",
-            url: process.env.REACT_APP_URL + "/article/" + article.id,
+
+  resetHeadlines = () => {
+    if (newArticle.isHeadline1 === true) {
+      resetHeadline1();
+    } else if (newArticle.isHeadline2 === true) {
+      resetHeadline2();
+    } else if (newArticle.isHeadline3 === true) {
+      resetHeadline3();
+    }
+  };
+
+  addArticle = () => {
+    newArticle
+      .save()
+      .then((article) => {
+        console.log(article);
+        res.status(201).json({
+          message: "New Article",
+          newArticle: {
+            _id: article._id,
+            title: article.title,
+            subtitle: article.subtitle,
+            body: article.body,
+            author: article.author,
+            section: article.section,
+            datetime: article.datetime,
+            isHeadline1: article.isHeadline1,
+            isHeadline2: article.isHeadline2,
+            isHeadline3: article.isHeadline3,
+            request: {
+              type: "GET",
+              description: "GET Posted Article",
+              url: process.env.REACT_APP_URL + "/article/" + article.id,
+            },
           },
-        },
+        });
+      })
+      // .then((article) => res.json(article))
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json({ error: err });
       });
-    })
-    // .then((article) => res.json(article))
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json({ error: err });
-    });
+  };
+
+  await resetHeadlines();
+  await addArticle();
 };
 
 exports.articles_get_article = async (req, res, next) => {
@@ -121,62 +137,17 @@ exports.articles_update_article = async (req, res, next) => {
   resetHeadlines = () => {
     for (let i = 0; i < req.body.length; i++) {
       if (req.body[i].prop === "isHeadline1" && req.body[i].value === true) {
-        Article.updateMany(
-          { isHeadline1: true },
-          { $set: { isHeadline1: false } },
-          { multi: true }
-        )
-          .exec()
-          .then((res) => {
-            console.log("Headline1 successfully reset");
-            updateArticle();
-          })
-          .catch((err) => {
-            console.log(err);
-            res
-              .status(500)
-              .json({ message: "Headline1 reset unsuccessful", error: err });
-          });
+        resetHeadline1();
       } else if (
         req.body[i].prop === "isHeadline2" &&
         req.body[i].value === true
       ) {
-        Article.updateMany(
-          { isHeadline2: true },
-          { $set: { isHeadline2: false } },
-          { multi: true }
-        )
-          .exec()
-          .then((res) => {
-            console.log("Headline2 successfully reset");
-            updateArticle();
-          })
-          .catch((err) => {
-            console.log(err);
-            res
-              .status(500)
-              .json({ message: "Headline2 reset unsuccessful", error: err });
-          });
+        resetHeadline2();
       } else if (
         req.body[i].prop === "isHeadline3" &&
         req.body[i].value === true
       ) {
-        Article.updateMany(
-          { isHeadline3: true },
-          { $set: { isHeadline3: false } },
-          { multi: true }
-        )
-          .exec()
-          .then((res) => {
-            console.log("Headline3 successfully reset");
-            updateArticle();
-          })
-          .catch((err) => {
-            console.log(err);
-            res
-              .status(500)
-              .json({ message: "Headline3 reset unsuccessful", error: err });
-          });
+        resetHeadline3();
       }
     }
   };
@@ -209,6 +180,7 @@ exports.articles_update_article = async (req, res, next) => {
   };
 
   await resetHeadlines();
+  await updateArticle();
 };
 
 exports.articles_delete_article = async (req, res, next) => {
@@ -230,5 +202,59 @@ exports.articles_delete_article = async (req, res, next) => {
     .catch((err) => {
       console.log(err);
       res.status(500).json({ error: err });
+    });
+};
+
+resetHeadline1 = () => {
+  Article.updateMany(
+    { isHeadline1: true },
+    { $set: { isHeadline1: false } },
+    { multi: true }
+  )
+    .exec()
+    .then((res) => {
+      console.log("Headline1 successfully reset");
+    })
+    .catch((err) => {
+      console.log(err);
+      res
+        .status(500)
+        .json({ message: "Headline1 reset unsuccessful", error: err });
+    });
+};
+
+resetHeadline2 = () => {
+  Article.updateMany(
+    { isHeadline2: true },
+    { $set: { isHeadline2: false } },
+    { multi: true }
+  )
+    .exec()
+    .then((res) => {
+      console.log("Headline2 successfully reset");
+    })
+    .catch((err) => {
+      console.log(err);
+      res
+        .status(500)
+        .json({ message: "Headline2 reset unsuccessful", error: err });
+    });
+};
+
+resetHeadline3 = () => {
+  Article.updateMany(
+    { isHeadline3: true },
+    { $set: { isHeadline3: false } },
+    { multi: true }
+  )
+    .exec()
+    .then((res) => {
+      console.log("Headline3 successfully reset");
+    })
+    .catch((err) => {
+      console.log(err);
+      res
+        .status(500)
+        .json({ message: "Headline3 reset unsuccessful", error: err });
     });
 };
