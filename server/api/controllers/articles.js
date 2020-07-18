@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 // Importing Model
 const Article = require("../models/Article");
+// const { updateArticle } = require("../../../client/src/actions/articleActions");
 
 exports.articles_get_all = async (req, res, next) => {
   await Article.find()
@@ -116,28 +117,98 @@ exports.articles_get_article = async (req, res, next) => {
 
 exports.articles_update_article = async (req, res, next) => {
   const id = req.params.articleId;
-  // handles different types of patch requests
-  const updateOps = {};
-  for (const ops of req.body) {
-    updateOps[ops.prop] = ops.value;
-  }
-  await Article.update({ _id: id }, { $set: updateOps })
-    .exec()
-    .then((article) => {
-      console.log(article);
-      res.status(200).json({
-        message: "Article updated",
-        request: {
-          type: "GET",
-          description: "GET updated article",
-          url: process.env.REACT_APP_URL + "/articles/" + id,
-        },
+
+  resetHeadlines = () => {
+    for (let i = 0; i < req.body.length; i++) {
+      if (req.body[i].prop === "isHeadline1" && req.body[i].value === true) {
+        Article.updateMany(
+          { isHeadline1: true },
+          { $set: { isHeadline1: false } },
+          { multi: true }
+        )
+          .exec()
+          .then((res) => {
+            console.log("Headline1 successfully reset");
+            updateArticle();
+          })
+          .catch((err) => {
+            console.log(err);
+            res
+              .status(500)
+              .json({ message: "Headline1 reset unsuccessful", error: err });
+          });
+      } else if (
+        req.body[i].prop === "isHeadline2" &&
+        req.body[i].value === true
+      ) {
+        Article.updateMany(
+          { isHeadline2: true },
+          { $set: { isHeadline2: false } },
+          { multi: true }
+        )
+          .exec()
+          .then((res) => {
+            console.log("Headline2 successfully reset");
+            updateArticle();
+          })
+          .catch((err) => {
+            console.log(err);
+            res
+              .status(500)
+              .json({ message: "Headline2 reset unsuccessful", error: err });
+          });
+      } else if (
+        req.body[i].prop === "isHeadline3" &&
+        req.body[i].value === true
+      ) {
+        Article.updateMany(
+          { isHeadline3: true },
+          { $set: { isHeadline3: false } },
+          { multi: true }
+        )
+          .exec()
+          .then((res) => {
+            console.log("Headline3 successfully reset");
+            updateArticle();
+          })
+          .catch((err) => {
+            console.log(err);
+            res
+              .status(500)
+              .json({ message: "Headline3 reset unsuccessful", error: err });
+          });
+      }
+    }
+  };
+
+  updateArticle = () => {
+    // handles different types of patch requests
+    const updateOps = {};
+    for (const ops of req.body) {
+      updateOps[ops.prop] = ops.value;
+    }
+    Article.updateOne({ _id: id }, { $set: updateOps })
+      .exec()
+      .then((article) => {
+        console.log("Updated Article: ", updateOps);
+        res.status(200).json({
+          message: "Article updated",
+          request: {
+            type: "GET",
+            description: "GET updated article",
+            url: process.env.REACT_APP_URL + "/articles/" + id,
+          },
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        res
+          .status(500)
+          .json({ message: "Article update unsuccessful", error: err });
       });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json({ error: err });
-    });
+  };
+
+  await resetHeadlines();
 };
 
 exports.articles_delete_article = async (req, res, next) => {

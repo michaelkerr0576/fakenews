@@ -149,7 +149,7 @@ class AdminModalForm extends Component {
     };
     if (validateForm(this.state.errors)) {
       console.info("Valid " + this.state.type + " Form");
-      //console.log(newArticle);
+      // console.log(newArticle);
       // Add or update article via actions
       const isType = this.state.type;
       const headlineName = this.state.headlineName;

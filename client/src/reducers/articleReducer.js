@@ -73,16 +73,12 @@ const initialState = {
 export default function (state = initialState, action) {
   switch (action.type) {
     case GET_ARTICLES:
-      console.log("GET Articles count(" + action.payload.count + "): ", [
-        ...action.payload.Articles,
-      ]);
       return {
         ...state,
         articles: action.payload.Articles,
         loading: false,
       };
     case ADD_ARTICLE:
-      console.log(action.payload.message  + ": ", action.payload.newArticle);
       return {
         ...state,
         articles: [action.payload.newArticle, ...state.articles],
@@ -95,7 +91,6 @@ export default function (state = initialState, action) {
         ),
       };
     case DELETE_ARTICLE:
-      console.log("Article Deleted: " + action.payload);
       return {
         ...state,
         articles: state.articles.filter(
