@@ -2,23 +2,23 @@
 // Override default BT variables:
 $grid-breakpoints: (
   // xs: 0,
-  // sm: 576px,
-  // md: 768px,
-  // lg: 992px,
-  // xl: 1200px,
-  xxl: 1440px,
+    // sm: 576px,
+    // md: 768px,
+    // lg: 992px,
+    // xl: 1200px,
+    xxl: 1440px,
   xxxl: 2160px,
-  xxxxl: 2880px,
+  xxxxl: 2880px
 );
 
 $container-max-widths: (
   // sm: 575.98px,
-  // md: 767.98px,
-  // lg: 991.98px,
-  // xl: 1199.98px,
-  xxl: 1439.98px,
+    // md: 767.98px,
+    // lg: 991.98px,
+    // xl: 1199.98px,
+    xxl: 1439.98px,
   xxxl: 2159.98px,
-  xxxxl: 2878.98px,
+  xxxxl: 2878.98px
 );
 
 // Import BT sources
@@ -135,6 +135,14 @@ p {
   -moz-column-gap: 1rem;
   grid-column-gap: 1rem;
   column-gap: 1rem;
+}
+.modal-content {
+  box-shadow: 0 20px 75px rgba(0, 0, 0, 0.23) !important;
+  border: none;
+}
+.modal-backdrop {
+  background: rgba(255, 255, 255, 0.9) !important;
+  opacity: 1 !important;
 }
 .page-link {
   position: relative;
@@ -301,6 +309,18 @@ p {
 }
 .c-maxSmFeature {
   display: none;
+}
+.c-confirmAlert {
+  width: 500px;
+  padding: 40px;
+  background: #fff;
+  box-shadow: 0 20px 75px rgba(0, 0, 0, 0.23);
+  text-align: center;
+  font-family: "Merriweather", serif;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
 }
 /* SCREEN SIZES */
 /* XLarge devices */

@@ -1,5 +1,7 @@
 import React, { Component, useState } from "react";
 import { Row, Col, Button, CardFooter, Tooltip } from "reactstrap";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 import { connect } from "react-redux";
 import {
   updateArticle,
@@ -62,7 +64,7 @@ class AdminLatestNewsColumnFooter extends Component {
       isHeadline2: this.state.isHeadline2,
       isHeadline3: this.state.isHeadline3,
     };
-    console.log(newArticle);
+    // console.log(newArticle);
     this.props.updateArticle(this.props.articleIndex, newArticle);
   };
 
@@ -111,6 +113,7 @@ class AdminLatestNewsColumnFooter extends Component {
                     text: "H1",
                     tooltip: "Make Headline 1",
                     name: "isHeadline1",
+                    title: "Headline 1",
                     group: "headlineGroup",
                     margin: "mr-sm-1",
                   },
@@ -120,6 +123,7 @@ class AdminLatestNewsColumnFooter extends Component {
                     text: "H2",
                     tooltip: "Make Headline 2",
                     name: "isHeadline2",
+                    title: "Headline 2",
                     group: "headlineGroup",
                     margin: "mr-sm-1",
                   },
@@ -129,6 +133,7 @@ class AdminLatestNewsColumnFooter extends Component {
                     text: "H3",
                     tooltip: "Make Headline 3",
                     name: "isHeadline3",
+                    title: "Headline 3",
                     group: "headlineGroup",
                     margin: "mr-sm-0",
                   },
@@ -175,7 +180,6 @@ class AdminLatestNewsColumnFooter extends Component {
                       id={i}
                       button={button}
                       article={article}
-                      //state={this.state}
                       onUpdateArticle={this.onUpdateArticle}
                       onDeleteArticle={this.onDeleteArticle}
                     />
@@ -218,18 +222,79 @@ const FooterAdminButton = (props) => {
             case "isHeadline1":
             case "isHeadline2":
             case "isHeadline3":
-              // async await to execute efectively execute functions one after the other
-              const setHeadline = async () => {
-                let data = await onSetHeadline(button.name);
-                data = await onResetHeadline();
-                data = await onSubmitHeadline();
-                return data;
-              };
-              return setHeadline();
+              return confirmAlert({
+                customUI: ({ onClose }) => {
+                  return (
+                    <div className="c-confirmAlert">
+                      <h2>
+                        <u>CONFIRM</u>
+                      </h2>
+                      <h5>Toggle {button.title}?</h5>
+                      <Button
+                        className="c-button c-select c-buttonDarkGray mt-3"
+                        block
+                        onClick={() => {
+                          // async await to execute efectively execute functions one after the other
+                          const onConfirm = async () => {
+                            let data = await onSetHeadline(button.name);
+                            data = await onResetHeadline();
+                            data = await onSubmitHeadline();
+                            data = await onClose();
+                            return data;
+                          };
+                          return onConfirm();
+                        }}
+                      >
+                        Yes<i className="far fa-check-circle fa-lg ml-1"></i>
+                      </Button>
+                      <Button
+                        className="c-button c-select c-buttonDarkGray"
+                        block
+                        onClick={onClose}
+                      >
+                        No<i className="far fa-times-circle fa-lg ml-1"></i>
+                      </Button>
+                    </div>
+                  );
+                },
+              });
             case "updateArticle":
               return onUpdateArticle();
             case "deleteArticle":
-              return onDeleteArticle();
+              return confirmAlert({
+                customUI: ({ onClose }) => {
+                  return (
+                    <div className="c-confirmAlert">
+                      <h2>
+                        <u>CONFIRM</u>
+                      </h2>
+                      <h5>Are you sure you want to delete this article?</h5>
+                      <Button
+                        className="c-button c-select c-buttonDarkGray mt-3"
+                        block
+                        onClick={() => {
+                          // async await to execute efectively execute functions one after the other
+                          const onConfirm = async () => {
+                            let data = await onDeleteArticle();
+                            data = await onClose();
+                            return data;
+                          };
+                          return onConfirm();
+                        }}
+                      >
+                        Yes<i className="far fa-check-circle fa-lg ml-1"></i>
+                      </Button>
+                      <Button
+                        className="c-button c-select c-buttonDarkGray"
+                        block
+                        onClick={onClose}
+                      >
+                        No<i className="far fa-times-circle fa-lg ml-1"></i>
+                      </Button>
+                    </div>
+                  );
+                },
+              });
             default:
               return false;
           }
