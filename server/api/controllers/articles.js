@@ -7,7 +7,7 @@ const Article = require("../models/Article");
 exports.articles_get_all = async (req, res, next) => {
   await Article.find()
     .select("-__v") // will exclude __v from fetch
-    .sort({ date: -1 }) //-1 for date descending sort //1 for date ascending sort
+    .sort({ datetime: -1 }) //-1 for date descending sort //1 for date ascending sort
     .then((articles) => {
       res.status(200).json({
         count: articles.length,
@@ -53,11 +53,11 @@ exports.articles_post_article = async (req, res, next) => {
 
   resetHeadlines = () => {
     if (newArticle.isHeadline1 === true) {
-      resetHeadline1();
+      return resetHeadline1();
     } else if (newArticle.isHeadline2 === true) {
-      resetHeadline2();
+      return resetHeadline2();
     } else if (newArticle.isHeadline3 === true) {
-      resetHeadline3();
+      return resetHeadline3();
     }
   };
 
@@ -137,17 +137,17 @@ exports.articles_update_article = async (req, res, next) => {
   resetHeadlines = () => {
     for (let i = 0; i < req.body.length; i++) {
       if (req.body[i].prop === "isHeadline1" && req.body[i].value === true) {
-        resetHeadline1();
+        return resetHeadline1();
       } else if (
         req.body[i].prop === "isHeadline2" &&
         req.body[i].value === true
       ) {
-        resetHeadline2();
+        return resetHeadline2();
       } else if (
         req.body[i].prop === "isHeadline3" &&
         req.body[i].value === true
       ) {
-        resetHeadline3();
+        return resetHeadline3();
       }
     }
   };
@@ -206,7 +206,7 @@ exports.articles_delete_article = async (req, res, next) => {
 };
 
 resetHeadline1 = () => {
-  Article.updateMany(
+  return Article.updateMany(
     { isHeadline1: true },
     { $set: { isHeadline1: false } },
     { multi: true }
@@ -224,7 +224,7 @@ resetHeadline1 = () => {
 };
 
 resetHeadline2 = () => {
-  Article.updateMany(
+  return Article.updateMany(
     { isHeadline2: true },
     { $set: { isHeadline2: false } },
     { multi: true }
@@ -242,7 +242,7 @@ resetHeadline2 = () => {
 };
 
 resetHeadline3 = () => {
-  Article.updateMany(
+  return Article.updateMany(
     { isHeadline3: true },
     { $set: { isHeadline3: false } },
     { multi: true }
