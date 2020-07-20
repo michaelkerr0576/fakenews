@@ -29,4 +29,9 @@ router.patch("/:articleId", ArticlesController.articles_update_article);
 // @access  Private 
 router.delete("/:articleId", ArticlesController.articles_delete_article);
 
+// @route   POST /articles/reset
+// @desc    Posts articles to reset DB
+// @access  Private 
+router.post("/reset", ArticlesController.articles_reset_articles);
+
 module.exports = router;

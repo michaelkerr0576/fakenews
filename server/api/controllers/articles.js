@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 
 // Importing Model
 const Article = require("../models/Article");
-// const { updateArticle } = require("../../../client/src/actions/articleActions");
 
 exports.articles_get_all = async (req, res, next) => {
   await Article.find()
@@ -34,7 +33,9 @@ exports.articles_get_all = async (req, res, next) => {
     })
     .catch((err) => {
       console.log(err);
-      res.status(500).json({ error: err });
+      res
+        .status(500)
+        .json({ message: "Get articles unsuccessful", error: err });
     });
 };
 
@@ -90,7 +91,9 @@ exports.articles_post_article = async (req, res, next) => {
       // .then((article) => res.json(article))
       .catch((err) => {
         console.log(err);
-        res.status(500).json({ error: err });
+        res
+          .status(500)
+          .json({ message: "Post article unsuccessful", error: err });
       });
   };
 
@@ -127,7 +130,7 @@ exports.articles_get_article = async (req, res, next) => {
     })
     .catch((err) => {
       console.log(err);
-      res.status(500).json({ error: err });
+      res.status(500).json({ message: "Get article unsuccessful", error: err });
     });
 };
 
@@ -201,8 +204,98 @@ exports.articles_delete_article = async (req, res, next) => {
     )
     .catch((err) => {
       console.log(err);
+      res.status(500).json({
+        message: "Delete article unsuccessful",
+        error: err,
+      });
       res.status(500).json({ error: err });
     });
+};
+
+exports.articles_reset_articles = async (req, res, next) => {
+  const articles = req.body.articles;
+
+  deleteArticles = () => {
+    return Article.deleteMany({})
+      .then((res) => {
+        console.log("Deleted " + res.deletedCount + " articles successfully");
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json({
+          message: "Delete articles unsuccessful",
+          error: err,
+        });
+      });
+  };
+
+  insertArticles = () => {
+    for (let [index, article] of articles.entries()) {
+      let newArticle = new Article({
+        _id: new mongoose.Types.ObjectId(),
+        title: article.title,
+        subtitle: article.subtitle,
+        body: article.body,
+        author: article.author,
+        section: article.section,
+        isHeadline1: article.isHeadline1,
+        isHeadline2: article.isHeadline2,
+        isHeadline3: article.isHeadline3,
+      });
+      newArticle
+        .save()
+        .then((res) => {
+          console.log("Added article[" + index + "] successfully");
+          if (index === articles.length - 1) return getArticles();
+        })
+        .catch((err) => {
+          console.log(err);
+          res.status(500).json({
+            message: "Add article[" + index + "] unsuccessful",
+            error: err,
+          });
+        });
+    }
+  };
+
+  getArticles = () => {
+    return Article.find()
+      .select("-__v") // will exclude __v from fetch
+      .sort({ datetime: -1 }) //-1 for date descending sort //1 for date ascending sort
+      .then((articles) => {
+        res.status(200).json({
+          count: articles.length,
+          Articles: articles.map((article) => {
+            return {
+              _id: article._id,
+              title: article.title,
+              subtitle: article.subtitle,
+              body: article.body,
+              author: article.author,
+              section: article.section,
+              datetime: article.datetime,
+              isHeadline1: article.isHeadline1,
+              isHeadline2: article.isHeadline2,
+              isHeadline3: article.isHeadline3,
+              request: {
+                type: "GET",
+                description: "GET article",
+                url: process.env.REACT_APP_URL + "/articles/" + article.id,
+              },
+            };
+          }),
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        res
+          .status(500)
+          .json({ message: "Get articles unsuccessful", error: err });
+      });
+  };
+
+  await deleteArticles();
+  await insertArticles();
 };
 
 resetHeadline1 = () => {
