@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { CardColumns } from "reactstrap";
+import { Button, CardColumns } from "reactstrap";
 
 //Importiong Components
 import ViewArticleModal from "../Modals/ViewArticleModal";
@@ -7,14 +7,21 @@ import HeadlineDetails from "./HeadlineDetails";
 
 class Headline extends Component {
   state = {
+    modal: false,
     isHeadline: this.props.isHeadline,
     colStyle: this.props.colStyle,
     charLimit: this.props.charLimit,
   };
 
+  onToggle = () => {
+    this.setState({
+      modal: !this.state.modal,
+    });
+  };
+
   render() {
     const { articles } = this.props;
-    const { charLimit } = this.state;
+    const { modal, charLimit } = this.state;
 
     //default headline if none is set
     let headline = {
@@ -73,16 +80,33 @@ class Headline extends Component {
       bodyContent = (
         <div>
           <p>{toParagraphs}</p>
-          <ViewArticleModal headline={headline} />
+          <div className="text-center">
+            <Button className="c-button c-select" onClick={this.onToggle}>
+              READ MORE ...
+            </Button>
+          </div>
         </div>
       );
     }
 
     return (
-      <div className="mt-3">
-        <div className="c-headlineBlockBorder"></div>
+      <div>
+        {/* Conditional rendering of View Article Modal */}
+        {modal ? (
+          <ViewArticleModal
+            modal={modal}
+            onToggleParent={this.onToggle}
+            article={headline}
+          />
+        ) : (
+          false
+        )}
+        {/* Headline */}
+        <div className="c-headlineBlockBorder mt-3"></div>
         <div className="c-headlineBlock mb-2"></div>
-        <h2 className="border-bottom mb-3 pb-2">{headline.title}</h2>
+        <h2 className="c-textUnderline c-pointer border-bottom mb-3 pb-2" onClick={this.onToggle}>
+          {headline.title}
+        </h2>
         <h3 className="mb-3">{headline.subtitle}</h3>
         <CardColumns className={this.state.colStyle}>
           {bodyContent}

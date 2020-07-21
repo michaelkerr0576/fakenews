@@ -84,14 +84,14 @@ class AdminLatestNewsColumnFooter extends Component {
 
   render() {
     const { articleIndex, article } = this.props;
-    const isUpdateActive = this.state.modal;
+    const { modal } = this.state;
 
     return (
       <div>
         {/* ADMIN - Rendered if user is logged in - Conditional rendering of Update Modal */}
-        {isUpdateActive ? (
+        {modal ? (
           <AdminUpdateArticleModal
-            modal={this.state.modal}
+            modal={modal}
             articleIndex={articleIndex}
             article={article}
             onUpdateArticle={this.onUpdateArticle}

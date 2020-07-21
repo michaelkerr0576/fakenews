@@ -81,7 +81,9 @@ class Home extends Component {
                 {/* Header Card */}
                 <LatestNewsHeader />
                 {/* Article Card */}
-                <LatestNewsColumnArticle articles={articles} />
+                {articles.map((article, index) => (
+                  <LatestNewsColumnArticle key={index} article={article} index={index} />
+                ))}
               </CardColumns>
             </Col>
           </Row>

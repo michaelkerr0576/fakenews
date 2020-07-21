@@ -1,30 +1,29 @@
 import React, { Component } from "react";
-import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
+import { Modal, ModalHeader, ModalBody } from "reactstrap";
 
 //Importiong Components
 import HeadlineDetails from "../Headlines/HeadlineDetails";
 
 class ViewArticleModal extends Component {
   state = {
-    modal: false,
+    modal: this.props.modal,
   };
 
   onToggle = () => {
     this.setState({
       modal: !this.state.modal,
     });
+    this.props.onToggleParent();
   };
 
   render() {
-    const { headline } = this.props;
-    
+    const { article } = this.props;
+    const { modal } = this.state;
+
     return (
-      <div className="text-center">
-        <Button className="c-button c-select" onClick={this.onToggle}>
-          READ MORE ...
-        </Button>
+      <div>
         <Modal
-          isOpen={this.state.modal}
+          isOpen={modal}
           toggle={this.onToggle}
           className="modal-dialog modal-dialog-centered modal-md"
           role="document"
@@ -33,15 +32,15 @@ class ViewArticleModal extends Component {
             <div className="mt-3">
               <div className="c-headlineBlockBorder"></div>
               <div className="c-headlineBlock mb-2"></div>
-              <h2>{headline.title}</h2>
+              <h2>{article.title}</h2>
             </div>
           </ModalHeader>
           <div className="c-crosshatch border pb-1"></div>
           <ModalBody>
             <div className="mt-2">
-              <h3 className="mb-3 pb-3 border-bottom">{headline.subtitle}</h3>
+              <h3 className="mb-3 pb-3 border-bottom">{article.subtitle}</h3>
               <p>
-                {headline.body.split("\n").map(function (paragraph, idx) {
+                {article.body.split("\n").map(function (paragraph, idx) {
                   return (
                     <span key={idx}>
                       {paragraph}
@@ -52,9 +51,9 @@ class ViewArticleModal extends Component {
                 })}
               </p>
               <HeadlineDetails
-                author={headline.author}
-                section={headline.section}
-                datetime={headline.datetime}
+                author={article.author}
+                section={article.section}
+                datetime={article.datetime}
               />
             </div>
           </ModalBody>

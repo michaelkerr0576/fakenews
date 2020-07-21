@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import {
   Row,
   Col,
@@ -14,21 +14,43 @@ import Moment from "react-moment";
 
 //Importiong Components
 import AdminLatestNewsColumnFooter from "./AdminLatestNewsColumnFooter";
+import ViewArticleModal from "../Modals/ViewArticleModal";
+class LatestNewsColumnArticle extends Component {
+  state = {
+    modal: false,
+  };
 
-const LatestNewsColumnArticle = (props) => {
-  const { articles } = props;
+  onToggle = () => {
+    this.setState({
+      modal: !this.state.modal,
+    });
+  };
 
-  return (
-    <div>
-      <TransitionGroup className="c-latestNewsColumnArticle">
-        {articles.map((article, i) => (
+  render() {
+    const { article, index } = this.props;
+    const { modal } = this.state;
+
+    return (
+      <div>
+        {/* Conditional rendering of View Article Modal */}
+        {modal ? (
+          <ViewArticleModal
+            modal={modal}
+            onToggleParent={this.onToggle}
+            article={article}
+          />
+        ) : (
+          false
+        )}
+        {/* Latest News Article */}
+        <TransitionGroup className="c-latestNewsColumnArticle">
           <CSSTransition key={article._id} timeout={500} classNames="fade">
             <Card>
               <CardHeader>
                 <Row>
                   <Col xs="auto" className="text-left mr-auto">
                     <small className="c-borderUnderline c-pointer">
-                      {article.author} 
+                      {article.author}
                     </small>
                     <small className="text-muted mx-1">|</small>
                     <small className="c-borderUnderline c-pointer">
@@ -44,7 +66,12 @@ const LatestNewsColumnArticle = (props) => {
               </CardHeader>
               <div className="c-crosshatch pb-1"></div>
               <CardBody>
-        <CardTitle className="my-1">{article.title}</CardTitle>
+                <CardTitle
+                  className="c-textUnderline c-pointer my-1"
+                  onClick={this.onToggle}
+                >
+                  {article.title}
+                </CardTitle>
                 <hr className="c-hr2 mx-n2 my-2" />
                 <CardColumns className="c-latestNewsColumn mt-3">
                   <CardSubtitle className="pt-1">
@@ -69,13 +96,16 @@ const LatestNewsColumnArticle = (props) => {
               </CardBody>
               <div className="c-crosshatch pb-1"></div>
               {/* ADMIN - Rendered if user is logged in */}
-              <AdminLatestNewsColumnFooter articleIndex={i} article={article} />
+              <AdminLatestNewsColumnFooter
+                articleIndex={index}
+                article={article}
+              />
             </Card>
           </CSSTransition>
-        ))}
-      </TransitionGroup>
-    </div>
-  );
-};
+        </TransitionGroup>
+      </div>
+    );
+  }
+}
 
 export default LatestNewsColumnArticle;

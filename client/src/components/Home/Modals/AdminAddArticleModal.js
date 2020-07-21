@@ -32,6 +32,8 @@ class AdminAddArticleModal extends Component {
   };
 
   render() {
+    const { modal, errors } = this.state;
+
     return (
       <div>
         <Button
@@ -41,7 +43,7 @@ class AdminAddArticleModal extends Component {
           <i className="fas fa-plus mr-2"></i>ADD ARTICLE
         </Button>
         <Modal
-          isOpen={this.state.modal}
+          isOpen={modal}
           toggle={this.onToggle}
           className="modal-dialog modal-dialog-centered modal-lg"
           role="document"
@@ -52,8 +54,8 @@ class AdminAddArticleModal extends Component {
           <div className="c-crosshatch border pb-1"></div>
           <AdminModalForm
             type="addArticle"
-            modal={this.state.modal}
-            errors={this.state.errors}
+            modal={modal}
+            errors={errors}
             article={this.state}
             onToggleParent={this.onToggle}
           />
