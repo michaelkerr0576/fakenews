@@ -25,7 +25,7 @@ class AdminResetArticles extends Component {
                       <u>CONFIRM</u>
                     </h2>
                     <h5>
-                      For Demo Purposes. Are you sure you want to reset
+                      <b>For Demo Purposes: </b>Are you sure you want to reset
                       articles? Articles you have added will be lost.
                     </h5>
                     <Button
@@ -33,6 +33,7 @@ class AdminResetArticles extends Component {
                       block
                       onClick={() => {
                         this.onResetArticles();
+                        onClose();
                       }}
                     >
                       Yes<i className="far fa-check-circle fa-lg ml-1"></i>
