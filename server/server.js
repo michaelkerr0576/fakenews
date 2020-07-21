@@ -8,9 +8,9 @@ if (process.env.NODE_ENV === "production") {
   // Static folder
   app.use(express.static(__dirname + "//../client/build"));
   // Handle single page app
-  app.get(/.*/, (req, res) =>
-    res.sendFile(__dirname + "//../client/build/index.html")
-  );
+  // app.get(/.*/, (req, res) =>
+  //   res.sendFile(__dirname + "//../client/build/index.html")
+  // );
 }
 
 const port = process.env.PORT || 5000;
