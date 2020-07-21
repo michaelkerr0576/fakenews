@@ -8,6 +8,7 @@ import {
   RESET_ARTICLES,
   RESET_HEADLINES,
 } from "./actionTypes";
+import { instance } from "../http-common";
 
 // Hardcoded reset state for DEMO purposes
 const resetState = {
@@ -65,7 +66,7 @@ const resetState = {
 
 export const getArticles = () => (dispatch) => {
   dispatch(setArticlesLoading());
-  axios.get(process.env.REACT_APP_URL + "/articles").then((res) => {
+  instance.get("/articles").then((res) => {
     console.log("getArticles", res);
     dispatch({
       type: GET_ARTICLES,
@@ -75,7 +76,7 @@ export const getArticles = () => (dispatch) => {
 };
 
 export const addArticle = (article) => (dispatch) => {
-  axios.post(process.env.REACT_APP_URL + "/articles", article).then((res) => {
+  instance.post("/articles", article).then((res) => {
     console.log("addArticle", res);
     dispatch({
       type: ADD_ARTICLE,
@@ -124,8 +125,8 @@ export const updateArticle = (index, article) => (dispatch) => {
       value: article.isHeadline3,
     },
   ];
-  axios
-    .patch(process.env.REACT_APP_URL + "/articles/" + id, formData)
+  instance
+    .patch("/articles/" + id, formData)
     .then((res) => {
       console.log("updateArticle", res);
       dispatch({
@@ -136,7 +137,7 @@ export const updateArticle = (index, article) => (dispatch) => {
 };
 
 export const deleteArticle = (id) => (dispatch) => {
-  axios.delete(process.env.REACT_APP_URL + "/articles/" + id).then((res) => {
+  instance.delete("/articles/" + id).then((res) => {
     console.log("deleteArticle", res);
     dispatch({
       type: DELETE_ARTICLE,
@@ -147,8 +148,8 @@ export const deleteArticle = (id) => (dispatch) => {
 
 export const resetArticles = () => (dispatch) => {
   dispatch(setArticlesLoading());
-  axios
-    .post(process.env.REACT_APP_URL + "/articles/reset", resetState)
+  instance
+    .post("/articles/reset", resetState)
     .then((res) => {
       console.log("resetArticles", res);
       dispatch({
