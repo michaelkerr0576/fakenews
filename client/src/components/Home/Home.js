@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 //Importiong Components
 import Headline from "./Headlines/Headline";
 import MostRead from "./MostRead/MostRead";
-import AdminAddArticleModal from "./Modals/AdminAddArticleModal";
+import Admin from "./Admin/Admin";
 import LatestNewsHeader from "./LatestNews/LatestNewsHeader";
 import LatestNewsColumnArticle from "./LatestNews/LatestNewsColumnArticle";
 import LatestNewsPagination from "./LatestNews/LatestNewsPagination";
@@ -72,12 +72,8 @@ class Home extends Component {
         <hr className="c-hr mt-0 mb-0" />
         {/* <div className="c-crosshatch border pb-1"></div> */}
         <Container fluid={true}>
-          <Row className="c-crosshatch border px-2 py-2">
-            <Col>
-              {/* ADMIN - Rendered if user is logged in */}
-              <AdminAddArticleModal />
-            </Col>
-          </Row>
+          {/* ADMIN - Rendered if user is logged in */}
+          <Admin />
           <Row className="mt-5 mt-sm-4 px-1">
             <Col xs="12">
               {/* PUBLIC - Latest news is always rendered */}
