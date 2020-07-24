@@ -110,7 +110,7 @@ class Home extends Component {
           </Row>
         </Container>
         {/* react-strap cant handle custom sass xxxl breakpoints, using standard bootstrap syntax */}
-        <div className="container-fluid mb-5 pb-3">
+        <div className="container-fluid mb-5 pb-4">
           <div className="row">
             <div className="col-xs-12  col-xxxl-10 offset-xxxl-1">
               <Row>
@@ -131,7 +131,7 @@ class Home extends Component {
                     articles={articles}
                   />
                 </Col>
-                <div className="c-maxSmFeature m-5"></div>
+                {/* <div className="c-maxSmFeature m-5"></div> */}
               </Row>
             </div>
           </div>
@@ -144,7 +144,7 @@ class Home extends Component {
           <Admin />
         </Container>
         {/* react-strap cant handle custom sass xxxl breakpoints, using standard bootstrap syntax */}
-        <div className="container-fluid my-5">
+        <div className="container-fluid my-2 my-md-5">
           <div className="row">
             <div className="col-xs-12  col-xxxl-10 offset-xxxl-1">
               <Row className="my-5 mt-sm-4 px-1">
@@ -164,12 +164,12 @@ class Home extends Component {
                   </CardColumns>
                 </Col>
               </Row>
-              <Row className="mt-2 px-2">
+              {/* <Row className="mt-2 px-2">
                 <Col xs="auto" className="mx-auto">
                   {/* PUBLIC - Pagination is always rendered */}
-                  <LatestNewsPagination />
+                  {/* <LatestNewsPagination />
                 </Col>
-              </Row>
+              </Row> */}
             </div>
           </div>
         </div>
