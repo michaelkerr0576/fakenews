@@ -54,7 +54,7 @@ class LatestNewsColumnArticle extends Component {
       <div>
         <TransitionGroup className="c-latestNewsColumnArticle">
           <CSSTransition key={article._id} timeout={1000} classNames="fade">
-            <Card>
+            <Card className="mb-4">
               {/* Card Header */}
               <CardHeader>
                 <Row>

@@ -74,7 +74,7 @@ class Home extends Component {
         <Container fluid={true}>
           {/* ADMIN - Rendered if user is logged in */}
           <Admin />
-          <Row className="mt-5 mt-sm-4 px-1">
+          <Row className="my-5 mt-sm-4 px-1">
             <Col xs="12">
               {/* PUBLIC - Latest news is always rendered */}
               <CardColumns>
