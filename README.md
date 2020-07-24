@@ -6,9 +6,13 @@
 
 > **DEMO:** [https://fakenews01.herokuapp.com](https://fakenews01.herokuapp.com)
 
+## Objective
+
+To build a full stack newspaper application focused on typography.
+
 ## Overview
 
-A Newspaper website focused on typography. A user will be presented with a frontpage where they can read articles without being distracted by images and ads. The main components are the Headlines, Most Read and Latest News sections. A regular user can filter, sort and search for articles to read while an admin user can login and run CRUD operations to POST, PATCH AND DELETE articles.
+A user will be presented with a frontpage where they can read articles without being distracted by images and ads. The main components are the Headlines, Most Read and Latest News sections. A regular user can filter, sort and search for articles to read while an admin user can login and run CRUD operations to POST, PATCH AND DELETE articles.
 
 ## Motivation
 
