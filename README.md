@@ -12,7 +12,7 @@ To build a full stack newspaper application focused on typography.
 
 ## Overview
 
-A user will be presented with a frontpage where they can read articles without being distracted by images and ads. The main components are the Headlines, Most Read and Latest News sections. A regular user can filter, sort and search for articles to read while an admin user can login and run CRUD operations to POST, PATCH AND DELETE articles.
+A user will be presented with a frontpage where they can read articles that are text only. A major goal was establishing a strong visual hierarchy without the use of colour or graphics. Instead the site relies on the typography and element spacing to hold the user's attention. The main components are the Headlines, Most Read and Latest News sections. A regular user can filter, sort and search for articles to read while an admin user can login and run CRUD operations to POST, PATCH AND DELETE articles.
 
 ## Motivation
 
