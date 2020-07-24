@@ -12,11 +12,14 @@ import {
   InputGroupAddon,
   InputGroupText,
 } from "reactstrap";
+import Moment from "react-moment";
 
 const HeaderTopNavbar = (props) => {
   const [dropdownOpen, setOpen] = useState(false);
 
-  const toggle = () => setOpen(!dropdownOpen);
+  const onToggle = () => setOpen(!dropdownOpen);
+
+  const currentDate = new Date();
 
   return (
     <div>
@@ -24,7 +27,7 @@ const HeaderTopNavbar = (props) => {
         <Nav className="mr-auto" navbar>
           <ButtonDropdown
             isOpen={dropdownOpen}
-            toggle={toggle}
+            toggle={onToggle}
             className="mt-1"
           >
             <DropdownToggle caret className="c-button c-select">
@@ -38,7 +41,7 @@ const HeaderTopNavbar = (props) => {
                   width: "400px",
                   maxWidth: "75vw",
                 }}
-                className="px-2"
+                className="px-2 c-pointer"
               >
                 <InputGroupAddon addonType="prepend">
                   <InputGroupText className="c-button">
@@ -60,7 +63,9 @@ const HeaderTopNavbar = (props) => {
           }}
           className="text-right"
         >
-          Tuesday, November 24, 2015
+          <Moment format="dddd, D MMMM, YYYY" withTitle>
+            {currentDate}
+          </Moment>
         </NavbarText>
       </Navbar>
     </div>

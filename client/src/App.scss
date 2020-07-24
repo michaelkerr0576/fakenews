@@ -37,7 +37,7 @@ $container-max-widths: (
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  background-color: rgba(0, 0, 0, 0.01);
+  background-color: rgba(0, 0, 0, 0.00);
 }
 /* TRANSITIONS */
 .fade-enter {
@@ -108,7 +108,7 @@ p {
   background-color: transparent;
 }
 .card-header {
-  background-color: rgba(0, 0, 0, 0.02);
+  background-color: rgba(0, 0, 0, 0.04);
 }
 .card-footer {
   background-color: rgba(0, 0, 0, 0.04);
@@ -327,11 +327,11 @@ p {
 /* XLarge devices */
 @media (min-width: 1600px) {
   .card-columns {
-    column-count: 3;
-    -webkit-column-gap: 1.25rem;
-    -moz-column-gap: 1.25rem;
-    grid-column-gap: 1.25rem;
-    column-gap: 1.25rem;
+    column-count: 2;
+    -webkit-column-gap: 1.5rem;
+    -moz-column-gap: 1.5rem;
+    grid-column-gap: 1.5rem;
+    column-gap: 1.5rem;
   }
   .c-headlineColumn2n3.card-columns {
     column-count: 3;

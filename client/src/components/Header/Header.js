@@ -4,7 +4,6 @@ import { Container } from "reactstrap";
 //Importiong Components
 import HeaderTopNavbar from "./HeaderTopNavbar";
 import HeaderTitle from "./HeaderTitle";
-import HeaderBottomNavbar from "./HeaderBottomNavbar";
 
 class Header extends Component {
   render() {
@@ -19,8 +18,6 @@ class Header extends Component {
         >
           <HeaderTopNavbar />
           <HeaderTitle />
-          <HeaderBottomNavbar />
-          {/* <hr className="mx-0 my-0" /> */}
         </Container>
       </div>
     );

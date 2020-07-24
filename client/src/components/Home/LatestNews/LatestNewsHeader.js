@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Card, CardTitle, CardBody, Badge } from "reactstrap";
+import { Row, Col, Card, Jumbotron, CardTitle, CardBody, Badge } from "reactstrap";
 
 //Importiong Components
 import LatestNewsColumnNavbarComponent from "./LatestNewsNavbar";
@@ -7,14 +7,9 @@ import LatestNewsColumnNavbarComponent from "./LatestNewsNavbar";
 const LatestNewsColumnHeader = (props) => {
   return (
     <div>
-      <Card className="c-headerCard m-0 mb-n3 pb-1 pb-sm-0">
+      <Card className="c-headerCard mb-4">
         <CardBody className="m-0 p-0">
           <CardTitle>
-            <Row className="mb-2 mb-sm-1">
-              <Col>
-                <LatestNewsColumnNavbarComponent />
-              </Col>
-            </Row>
             <Row>
               <Col xs="12" sm="auto" className="text-left mr-auto">
                 <h4>
@@ -53,6 +48,13 @@ const LatestNewsColumnHeader = (props) => {
               </Col>
             </Row>
             <hr className="c-hr m-0 w-100" />
+            <Row>
+              <Col>
+                <Jumbotron fluid className="m-0 p-3">
+                  <LatestNewsColumnNavbarComponent />
+                </Jumbotron>
+              </Col>
+            </Row>
           </CardTitle>
         </CardBody>
       </Card>

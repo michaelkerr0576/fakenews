@@ -13,6 +13,19 @@ import { instance } from "../http-common";
 const resetState = {
   articles: [
     {
+      title:
+        "“You Can Take Our Fish, Gas & Trees, But You’ll Never Take Our Tax Haven Status” Ireland Tells Europe",
+      subtitle:
+        "FOLLOWING decades of subservient behaviour towards the EU and agreeing to share its most lucrative of resources, the Republic of Ireland has this week taken a stand, telling its European partners that “no, you will never take our tax haven status”.",
+      body:
+        "Despite allowing some of the most aggressive fishing in its waters the world has ever seen, along with the depletion of its forestry and corporate rape of its vast oil and gas fields West of the island, forcing American multinational company Apple into paying €14 billion in unpaid taxes was the final straw for the proud nation.\n“You can feck off now with that auld shite,” Ireland told Europe, who have been threatening to clamp down on the country’s generous tax incentives which undercut most other nations in the union, “ye can send super trawlers over all ye want and steal all our fish and livelihood, but don’t even think for a second you can make us take money that’s owed, no way. What you think we are, bloody idiots?”\nIreland was responding to a recent court ruling in which Brussels suffered a major legal defeat against Apple, with the EU’s top competition official vowing to make the tech company, and others, pay more tax.\n“But they give us loads of jobs and they look really cool and modern scattered around the island,” Ireland pointed out, trying to hide some homeless people in the process, “sure what would we need all that money for? We wouldn’t know what to do with it”.",
+      author: "Renee Zellweger",
+      section: "Business",
+      isHeadline1: false,
+      isHeadline2: false,
+      isHeadline3: false,
+    },
+    {
       title: "“2020’s Been A Bit Of Craic All The Same”",
       subtitle:
         "AS PART of WWN’s Opinion series, we give a platform to people we really shouldn’t. This week, it’s the turn of Kev Fenton, who thinks all things considered 2020 has been a massive amount of craic so far.",
@@ -57,7 +70,7 @@ const resetState = {
       body:
         "Taking a leaf from Eamon Ryan’s book Fianna Fáil leader Martin feels Ireland’s ecology could still benefit from majestic Celtic Tigers freely roaming around urban areas again in the same nonchalant fashion as city-dwelling foxes.\nDNA garnered from the remains of the last known Celtic Tiger have already been ‘genetically fused’ with the hair of Johnny Ronan, an old 100% mortgage application leaflet and the scrapings from a brick on the site of the old Anglo Irish Bank HQ.\n“Go forth my pretties, and use ‘saving the economy’ as your pretext for carving up all before you, grease whatever wheels you feel you need to in order to get a deal ‘over the line'” said one government appointed mad scientist as he opened the locks on Celtic Tiger cages.\n“God, that intoxicating scent the fur gives out is unmistakable – , you’ll all be buying apartments in Bulgaria again in no time,” confirmed the Taoiseach.\nReacting to the criticism that Ireland’s tax haven status, ludicrous claim of having ‘full employment’ for several years and the presence of multinationals bloating Ireland’s GDP figures will combine to make it much harder for Ireland to qualify for any of the €390 billion in EU grants on offer, a Fianna Fáil spokesperson stated that “when my party sees a loop it never fails to sniff out a hole, we’ll make it work one way or another…for our lot at least”.",
       author: "Peter Griffin",
-      section: "Culture",
+      section: "Politics",
       isHeadline1: true,
       isHeadline2: false,
       isHeadline3: false,
@@ -83,7 +96,7 @@ const resetState = {
       body:
         "The new signal comes after federal law enforcement officers from the Department of Homeland Security arrived in Portland earlier this week and presently in Chicago to violently quell peaceful protests, and on occasion mistakenly batoning Trump supporters.\n“Skin colour is a great initial guide but if all Mr. Trump’s supporters could raise their right hand and say ‘victory to the president’, that would be great,” a source overseeing the deployment of America’s latest team of heavily armoured and unidentified law enforcers, “we don’t want to mix you up with protesters, much like the way everyone mixes our team up with right wing militias”.\nQuestioned over the illegal arrests and the kidnapping of US citizens, the military looking outfit insisted that everything will be okay, as long as you don’t take sides against the president.\n“All you have to do is just give us the salute and you won’t be bundled into an awaiting unmarked van and taken into the night,” our source confirmed, before sticking a gun to this reporter’s face for good measure.\nIn further moves to see quell the peace, all protesters opposed to racist behavior who promoting the Black Lives Matter movement will have to wear a black armbands when out in public.\n“It’s a simple ask, and if these people insist on rubbing us up the wrong way we have dozens of trains waiting to bring them off to federal prison”.",
       author: "John Doe",
-      section: "Culture",
+      section: "Politics",
       isHeadline1: false,
       isHeadline2: false,
       isHeadline3: false,
@@ -95,7 +108,7 @@ const resetState = {
       body:
         "Speaking from the comfort of her own home while wearing a high visibility vest she ordered online, Dana Woods began rattling off a string of rule breakers from a longlist she has written into her clipboard.\n“Tony Phelan from number 12 has gone to France this week with the family, I’ll be making sure they are all self isolating when they get back, that’s for sure,” the daughter-of-two exclaimed, “I saw Maggie Roche in Tesco without a mask this morning, so I’ll be calling her out on Facebook later on this evening when I get a glass or two of wine in me, let me tell you”.\nSeemingly unaware the country is slowly but surely coming out of lockdown, with restrictions lifting every few weeks, Woods said she’s determined to continue her painful tirade until the very last second.\n“I am the law,” Woods insisted, almost happy with her role in calling out people and coming across as a bit of fucking dose to most, “it’s people like me who keep this society in check and I don’t care what other people think of me, as long as I think I’m right”.\nDespite not being paid for her role, not everyone is happy with Woods’ sudden self designation.\n“Some people just love hearing the sound of their own voice, or reading back on their own words, and Dana is one of those people who chimes in to everyone else’s business,” husband and homeworker Mark Woods explains, before concluding “I suppose it keeps her off my back, and the poor kids  – I can’t wait for her to piss off back to work and give us and the whole fucking town a break”.",
       author: "Jane Doe",
-      section: "Business",
+      section: "Culture",
       isHeadline1: false,
       isHeadline2: false,
       isHeadline3: false,
@@ -108,7 +121,7 @@ const resetState = {
       body:
         "If you’re feeling confused as to what this means for you now, fear not; Taoiseach Leo Varadkar took to the airwaves yesterday to inform the nation that the new Phase 2 will invoke the ‘ah sure you know yourself’ rule, which should clear up any uncertainty.\nFrom today:\nYou’re allowed to travel up to 20km from your home, or within the limits of your county borders. But, y’know, if you want to go somewhere that’s 25kms away, or just go three counties over, that’s up to you. You might be unknowingly taking Coivd-19 with you, but really, if you were going to have it, you’d have had it by now, right? Be grand.\nYou can meet up to 6 people inside your home, without getting dirty looks from your neighbours. These gatherings should be short, but again; you know yourself how these things go. If three more lads show up to your gaff party at 2 in the morning, what are you going to do, turn them away? Don’t be a dry shite.\nAll retail is re-opening, and all trips to the shops are deemed necessary. No longer do you have to worry about this ‘essentials only’ craic. Head up and unleash the dogs of war in Penneys! With restrictions still in place for how many people can enter a shop at any given time, the public are also advised to browse as much as possible while in store, to ‘get the benefit’ of having waited an hour outside. Also if you could try and touch every single thing in the shop, that’s probably alright.\nIf you can work from home, then continue to do so. Ha ha! Like you needed to be told this. No trousers this month!\nWear masks, maybe? If you feel like it. Sure you know yourself.\nPlaygrounds are open if they’re supervised, so if you see a playground, go ahead and lift your kid over the railings. You’re there, so you’re a supervisor, technically. Even if you’re just going to be on your phone the whole time. \nUp to 15 people may partake in outdoor sporting activity. Ha ha! Yeah get the lads round for 7 and a half-a-side. 11 on 11, get it done. You’ll be grand. Sure Seamus will never get near the fucking ball.\nPubs will be allowed re-open if they serve food, so get ready for some delicious pints and a pot noodle.\nPhase 3 of the re-opening is set to take place on June 29th, although it’s unclear what will be left to do by then.",
       author: "Peter Griffin",
-      section: "Lifestyle",
+      section: "Politics",
       isHeadline1: false,
       isHeadline2: false,
       isHeadline3: false,
