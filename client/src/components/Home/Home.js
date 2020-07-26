@@ -3,12 +3,6 @@ import {
   Container,
   Row,
   Col,
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  Nav,
-  NavItem,
-  NavLink,
   CardColumns,
 } from "reactstrap";
 import { connect } from "react-redux";
@@ -16,80 +10,27 @@ import { getArticles } from "../../actions/articleActions";
 import PropTypes from "prop-types";
 
 //Importiong Components
-// import HeaderBottomNavbar from "../Header/HeaderBottomNavbar";
+import HeaderBottomNavbar from "../Header/HeaderBottomNavbar";
 import Headline from "./Headlines/Headline";
 import MostRead from "./MostRead/MostRead";
 import Admin from "./Admin/Admin";
 import LatestNewsHeader from "./LatestNews/LatestNewsHeader";
 import LatestNewsColumnArticle from "./LatestNews/LatestNewsColumnArticle";
-import LatestNewsPagination from "./LatestNews/LatestNewsPagination";
+//import LatestNewsPagination from "./LatestNews/LatestNewsPagination";
 
 class Home extends Component {
-  state = {
-    isOpen: false,
-  };
-
   //Runs when the component mounts
   componentDidMount() {
     this.props.getArticles();
   }
 
-  onToggle = () => {
-    this.setState({
-      isOpen: !this.state.isOpen,
-    });
-  };
-
   render() {
     const { articles } = this.props.article;
-    const { isOpen } = this.state;
 
     return (
       <div className="Home my-3">
         {/* sticky navbar has to be in main div container to stay throughout */}
-        <Navbar
-          light
-          expand="md"
-          sticky="top"
-          className="d-flex flex-row-reverse border-bottom c-bottomNav border-top bg-white"
-        >
-          {/* create hamburger menu on medium screens */}
-          <NavbarToggler
-            style={{
-              padding: ".375rem .75rem",
-              border: "none",
-            }}
-            className="c-button c-select c-buttonLightGray mb-1"
-            onClick={this.onToggle}
-          >
-            <i className="fas fa-bars mr-2"></i>SECTIONS
-            <i className="fas fa-caret-down ml-2"></i>
-          </NavbarToggler>
-          <Collapse isOpen={isOpen} navbar>
-            <Nav className="navbar-nav nav-fill w-100" navbar>
-              <NavItem>
-                {/* className="text-left text-md-center" */}
-                <NavLink href="/news">POLITICS</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/sport">SPORT</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/business">BUSINESS</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/opinion">OPINION</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/lifestyle">LIFESTYLE</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/culture">CULTURE</NavLink>
-              </NavItem>
-            </Nav>
-          </Collapse>
-        </Navbar>
-        <div className="c-crosshatch pb-1"></div>
+        <HeaderBottomNavbar />
 
         <Container fluid="lg" className="mt-4">
           <Row>
@@ -97,7 +38,7 @@ class Home extends Component {
               <Headline
                 isHeadline="isHeadline1"
                 colStyle="c-headlineColumn"
-                charLimit={1000}
+                charLimit={1200}
                 articles={articles}
               />
             </Col>
@@ -167,7 +108,7 @@ class Home extends Component {
               {/* <Row className="mt-2 px-2">
                 <Col xs="auto" className="mx-auto">
                   {/* PUBLIC - Pagination is always rendered */}
-                  {/* <LatestNewsPagination />
+              {/* <LatestNewsPagination />
                 </Col>
               </Row> */}
             </div>

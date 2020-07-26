@@ -59,7 +59,11 @@ class Headline extends Component {
     }
 
     //headline body character limit and show more button
-    const toShow = headline.body.substring(0, charLimit) + "...";
+    const headlineLength =
+      headline.title.length + headline.subtitle.length + headline.body.length;
+    const bodyLength =
+      charLimit - (headline.title.length + headline.subtitle.length);
+    const toShow = headline.body.substring(0, bodyLength) + "...";
     const toParagraphs = toShow.split("\n").map(function (paragraph, idx) {
       return (
         <span key={idx}>
@@ -74,7 +78,7 @@ class Headline extends Component {
       );
     });
     let bodyContent;
-    if (headline.body.length <= charLimit) {
+    if (headlineLength <= charLimit) {
       bodyContent = <p>{toParagraphs}</p>;
     } else {
       bodyContent = (
@@ -104,7 +108,10 @@ class Headline extends Component {
         {/* Headline */}
         <div className="c-headlineBlockBorder mt-3"></div>
         <div className="c-headlineBlock mb-2"></div>
-        <h2 className="c-textUnderline c-pointer border-bottom mb-3 pb-2" onClick={this.onToggle}>
+        <h2
+          className="c-textUnderline c-pointer border-bottom mb-3 pb-2"
+          onClick={this.onToggle}
+        >
           {headline.title}
         </h2>
         <h3 className="mb-3">{headline.subtitle}</h3>
