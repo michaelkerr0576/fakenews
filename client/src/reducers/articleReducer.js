@@ -6,6 +6,11 @@ import {
   RESET_ARTICLES,
   RESET_HEADLINES,
   ARTICLES_LOADING,
+  SORT_BY_LATEST,
+  SORT_BY_OLDEST,
+  REMOVE_FILTERS,
+  FILTER_BY_SEARCH,
+  FILTER_BY_SECTION,
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -82,7 +87,50 @@ export default function (state = initialState, action) {
     case ARTICLES_LOADING:
       return {
         ...state,
-        loading: true,
+      };
+    case SORT_BY_LATEST:
+      state.articles.sort((a, b) => {
+        let dateA = new Date(a.datetime);
+        let dateB = new Date(b.datetime);
+        if (dateA < dateB) {
+          return 1;
+        } else if (dateA > dateB) {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
+      console.log("sortByLatest:", [...state.articles]);
+      return {
+        ...state,
+      };
+    case SORT_BY_OLDEST:
+      state.articles.sort((a, b) => {
+        let dateA = new Date(a.datetime);
+        let dateB = new Date(b.datetime);
+        if (dateA < dateB) {
+          return -1;
+        } else if (dateA > dateB) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      console.log("sortByOldest:", [...state.articles]);
+      return {
+        ...state,
+      };
+    case REMOVE_FILTERS:
+      return {
+        ...state,
+      };
+    case FILTER_BY_SEARCH:
+      return {
+        ...state,
+      };
+    case FILTER_BY_SECTION:
+      return {
+        ...state,
       };
     default:
       return state;

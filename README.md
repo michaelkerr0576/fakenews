@@ -1,6 +1,6 @@
 ﻿# fakenews
 
-> WORK IN PROGRESS TEST
+> WORK IN PROGRESS
 
 > MERN Full Stack Application - Newspaper Website to show fake news
 

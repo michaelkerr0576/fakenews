@@ -6,6 +6,11 @@ import {
   ARTICLES_LOADING,
   RESET_ARTICLES,
   RESET_HEADLINES,
+  SORT_BY_LATEST,
+  SORT_BY_OLDEST,
+  REMOVE_FILTERS,
+  FILTER_BY_SEARCH,
+  FILTER_BY_SECTION,
 } from "./actionTypes";
 import { instance } from "../http-common";
 
@@ -251,6 +256,29 @@ export const resetHeadlines = (type) => {
     payload: type,
   };
 };
+
+export const sortByLatest = () => ({
+  type: SORT_BY_LATEST
+});
+
+export const sortByOldest = () => ({
+  type: SORT_BY_OLDEST
+});
+
+export const removeFilters = (payload) => ({
+  type: REMOVE_FILTERS,
+  payload: payload,
+});
+
+export const filterBySearch = (payload) => ({
+  type: FILTER_BY_SEARCH,
+  payload: payload,
+});
+
+export const filterBySection = (payload) => ({
+  type: FILTER_BY_SECTION,
+  payload: payload,
+});
 
 export const setArticlesLoading = () => {
   return {
