@@ -30,17 +30,10 @@ Fakenews is created with:
 - Mongoose
 - MongoDB
 
-## Screenshots
+## Demo Screenshots
+> **DEMO:** [https://fakenews01.herokuapp.com](https://fakenews01.herokuapp.com)
 
-TODO - Include logo/demo screenshot etc.
-
-## Features
-
-TODO - Features
-
-## Code Example
-
-TODO - Code Examples
+TODO Screenshots
 
 ## License
 
