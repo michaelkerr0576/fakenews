@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  CardColumns,
-} from "reactstrap";
+import { Container, Row, Col, CardColumns } from "reactstrap";
 import { connect } from "react-redux";
 import { getArticles } from "../../actions/articleActions";
 import PropTypes from "prop-types";
@@ -25,7 +20,7 @@ class Home extends Component {
   }
 
   render() {
-    const { articles } = this.props.article;
+    const { articles, mutableArticles } = this.props.article;
 
     return (
       <div className="Home my-3">
@@ -85,7 +80,10 @@ class Home extends Component {
           <Admin />
         </Container>
         {/* react-strap cant handle custom sass xxxl breakpoints, using standard bootstrap syntax */}
-        <div className="container-fluid my-2 my-md-5">
+        <div
+          className="container-fluid my-2 my-md-5"
+          style={{ minHeight: "100vh" }}
+        >
           <div className="row">
             <div className="col-xs-12  col-xxxl-10 offset-xxxl-1">
               <Row className="my-5 mt-sm-4 px-1">
@@ -95,7 +93,7 @@ class Home extends Component {
                     {/* Header Card */}
                     <LatestNewsHeader />
                     {/* Article Card */}
-                    {articles.map((article, index) => (
+                    {mutableArticles.map((article, index) => (
                       <LatestNewsColumnArticle
                         key={index}
                         article={article}

@@ -8,11 +8,13 @@ import {
   DropdownMenu,
   DropdownItem,
   InputGroup,
-  Input,
   InputGroupAddon,
   InputGroupText,
 } from "reactstrap";
 import Moment from "react-moment";
+
+//Importiong Components
+import ArticleSearch from "../Home/Search/Search";
 
 const HeaderTopNavbar = (props) => {
   const [dropdownOpen, setOpen] = useState(false);
@@ -48,7 +50,8 @@ const HeaderTopNavbar = (props) => {
                     <i className="fas fa-search"></i>
                   </InputGroupText>
                 </InputGroupAddon>
-                <Input placeholder="SEARCH..." className="c-button c-select" />
+                {/* Article Search Component */}
+                <ArticleSearch />
               </InputGroup>
             </DropdownMenu>
           </ButtonDropdown>

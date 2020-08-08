@@ -174,8 +174,7 @@ class AdminModalForm extends Component {
   };
 
   render() {
-    const { errors } = this.state;
-    const isType = this.state.type;
+    const { isType, errors, author, section, title, subtitle, body } = this.state;
     let submitBtnType;
     if (isType === "addArticle") {
       submitBtnType = (
@@ -207,7 +206,7 @@ class AdminModalForm extends Component {
                   id="articleAuthor"
                   placeholder="..."
                   onChange={this.onChange}
-                  value={this.state.author}
+                  value={author}
                   className="c-select c-selectBorder"
                   required
                 ></Input>
@@ -219,7 +218,7 @@ class AdminModalForm extends Component {
                   name="section"
                   id="articleSection"
                   onChange={this.onChange}
-                  value={this.state.section}
+                  value={section}
                   className="c-select c-selectBorder"
                   required
                 >
@@ -282,7 +281,7 @@ class AdminModalForm extends Component {
                 id="articleTitle"
                 placeholder="..."
                 onChange={this.onChange}
-                value={this.state.title}
+                value={title}
                 autoComplete="off"
                 className="c-select c-selectBorder"
                 required
@@ -298,7 +297,7 @@ class AdminModalForm extends Component {
                 id="articleSubtitle"
                 placeholder="..."
                 onChange={this.onChange}
-                value={this.state.subtitle}
+                value={subtitle}
                 autoComplete="off"
                 className="c-select c-selectBorder"
                 required
@@ -314,7 +313,7 @@ class AdminModalForm extends Component {
                 id="articleBody"
                 placeholder="..."
                 onChange={this.onChange}
-                value={this.state.body}
+                value={body}
                 autoComplete="off"
                 className="c-select c-selectBorder"
                 required

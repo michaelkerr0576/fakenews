@@ -17,13 +17,12 @@ import {
   sortByLatest,
   sortByOldest,
   removeFilters,
-  filterBySearch,
   filterBySection,
 } from "../../../actions/articleActions";
 import PropTypes from "prop-types";
 
 //Importiong Components
-import LatestNewsColumnNavbarComponent from "./LatestNewsNavbar";
+import LatestNewsNavbar from "./LatestNewsNavbar";
 
 class LatestNewsColumnHeader extends Component {
   state = {
@@ -48,10 +47,6 @@ class LatestNewsColumnHeader extends Component {
       sorting: "OLDEST",
     });
     this.props.sortByOldest();
-  };
-
-  onFilterBySearch = () => {
-    this.props.filterBySearch();
   };
 
   onFilterBySection = () => {
@@ -154,7 +149,7 @@ class LatestNewsColumnHeader extends Component {
             <Row>
               <Col>
                 <Jumbotron fluid className="m-0 p-3">
-                  <LatestNewsColumnNavbarComponent />
+                  <LatestNewsNavbar />
                 </Jumbotron>
               </Col>
             </Row>
@@ -169,7 +164,6 @@ LatestNewsColumnHeader.propTypes = {
   sortByLatest: PropTypes.func.isRequired,
   sortByOldest: PropTypes.func.isRequired,
   removeFilters: PropTypes.func.isRequired,
-  filterBySearch: PropTypes.func.isRequired,
   filterBySection: PropTypes.func.isRequired,
 };
 
@@ -177,7 +171,6 @@ const mapDispatchToProps = {
   sortByLatest,
   sortByOldest,
   removeFilters,
-  filterBySearch,
   filterBySection,
 };
 

@@ -4,7 +4,6 @@ import {
   UPDATE_ARTICLE,
   DELETE_ARTICLE,
   ARTICLES_LOADING,
-  RESET_ARTICLES,
   RESET_HEADLINES,
   SORT_BY_LATEST,
   SORT_BY_OLDEST,
@@ -244,7 +243,7 @@ export const resetArticles = () => (dispatch) => {
   instance.post("/articles/reset", resetState).then((res) => {
     console.log("resetArticles", res);
     dispatch({
-      type: RESET_ARTICLES,
+      type: GET_ARTICLES,
       payload: res.data,
     });
   });
@@ -270,9 +269,9 @@ export const removeFilters = (payload) => ({
   payload: payload,
 });
 
-export const filterBySearch = (payload) => ({
+export const filterBySearch = (value) => ({
   type: FILTER_BY_SEARCH,
-  payload: payload,
+  payload: value,
 });
 
 export const filterBySection = (payload) => ({
